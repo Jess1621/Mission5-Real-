@@ -1,0 +1,70 @@
+﻿@{
+    ViewData["Title"] = "Movie List";
+
+}
+
+@model List<ApplicationResponse>
+
+<div class="page-header min-vh-80" style="background-image: url('https://source.unsplash.com/gjA24divsqw') ">
+    <span class="mask bg-gradient-dark opacity-6"></span>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 mx-auto">
+                <div class="text-center">
+                    <h1 class="text-white">Movie List</h1>
+                    <h3 class="text-white">View Your Movies</h3>
+                    <a asp-controller="Home" asp-action="Index" class="btn bg-gradient-primary btn-icon" type="button">
+                        <div class="d-flex align-items-center">
+                            <i class="material-icons me-2" aria-hidden="true">home</i>
+                            Back To Home
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card card-body shadow-xl mx-3 mx-md-4 mt-n6">
+    <div class="container">
+        <div class="section text-center">
+            <h2 class="title">Here is a list of your Movies</h2>
+            <br />
+
+                <!-- This is a table to pass in a list of movies -->
+                <table class="table table-bordered table-striped">
+                    <thead class="font-weight-bold">
+                        <tr>
+                            <td>Category</td>
+                            <td>Title</td>
+                            <td>Year</td>
+                            <td>Director</td>
+                            <td>Rating</td>
+                            <td>Edited</td>
+                            <td>Notes</td>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var x in Model)
+                        {
+                            <tr>
+                                <td>@x.Category.CategoryName</td>
+                                <td>@x.Title</td>
+                                <td>@x.Year</td>
+                                <td>@x.Director</td>
+                                <td>@x.Rating</td>
+                                <td>@x.Edited</td>
+                                <td>@x.Notes</td>
+
+                                <!--Will add an "Edit" and "Delete" Link for each row -->
+                                <td><a asp-controller="Home" asp-action="EditMovie" 
+                                       asp-route-applicationid="@x.ApplicationID" class="btn-sm btn-secondary">Edit</a></td>
+                                <td><a asp-controller="Home" asp-action="Delete" 
+                                       asp-route-applicationid="@x.ApplicationID" class="btn-sm btn-danger">Delete</a></td>
+                            </tr>
+                        }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

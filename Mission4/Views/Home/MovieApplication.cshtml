@@ -1,0 +1,90 @@
+﻿
+@{
+    ViewData["Title"] = "Update Movie Collection";
+}
+@model Mission4.Models.ApplicationResponse
+
+<div class="page-header min-vh-80" style="background-image: url('https://source.unsplash.com/evlkOfkQ5rE') ">
+    <span class="mask bg-gradient-dark opacity-6"></span>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 mx-auto">
+                <div class="text-center">
+                    <h1 class="text-white">Update Movie Collection</h1>
+                    <h3 class="text-white">Store In Database</h3>
+                    <a asp-controller="Home" asp-action="index" class="btn bg-gradient-primary btn-icon">
+                        <div class="d-flex align-items-center">
+                            <i class="material-icons me-2" aria-hidden="true">home</i>
+                            Back To Home
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card card-body shadow-xl mx-3 mx-md-4 mt-n6">
+    <div class="container">
+        <div class="section text-center">
+            <h2 class="title">Update Movie Collection By Filling Out the Form Below</h2>
+            <!--This will provide a success or error message when the form is submitted-->
+            <span class="badge bg-gradient-success">@ViewBag.success</span>
+            <span class="badge bg-gradient-danger">@ViewBag.fail</span><br /><br />
+
+            <!-- Form connected to SQLite Database -->
+            <form method="post">
+                <div asp-validation-summary="All"></div>
+
+                <!--Category Field-->
+                <label asp-for="Category"><strong>Category:</strong></label><br />
+                <select asp-for="CategoryID">
+                    <option value="">Select a Category</option>
+                    <!--This will let people select from a list of Category Names-->
+                    @foreach (Category m in ViewBag.Categorys)
+                        {
+                            <option value="@m.CategoryID">@m.CategoryName</option>
+                        }
+                </select><br />
+
+                <!--Title Field-->
+                <label asp-for="Title"><strong>Title:</strong></label><br />
+                <input asp-for="Title" /><br />
+
+                <!--Year Field-->
+                <label asp-for="Year"><strong>Year:</strong></label><br />
+                <input asp-for="Year" /><br />
+
+                <!--Director Field-->
+                <label asp-for="Director"><strong>Director:</strong></label><br />
+                <input asp-for="Director" /><br />
+
+                <!--Rating Field-->
+                <label asp-for="Rating"><strong>Rating:</strong></label><br />
+                <select asp-for="Rating">
+                    <option value="G">G</option>
+                    <option value="PG">PG</option>
+                    <option value="PG-13">PG-13</option>
+                    <option value="R">R</option>
+                </select><br />
+
+                <!--Edited Field-->
+                <label asp-for="Edited"><strong>Edited:</strong></label><br />
+                <select asp-for="Edited">
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                </select><br />
+
+                <!--Lent To Field-->
+                <label asp-for="LentTo"><strong>Lent To:</strong></label><br />
+                <input asp-for="LentTo" /><br />
+
+                <!--Notes Field-->
+                <label asp-for="Notes"><strong>Notes:</strong></label><br />
+                <textarea asp-for="Notes" rows="4" maxlength="25"></textarea><br /><br />
+
+                <!--Submit Button-->
+                <button type="submit">Submit Application</button>
+            </form>
+        </div>
+    </div>
+</div>

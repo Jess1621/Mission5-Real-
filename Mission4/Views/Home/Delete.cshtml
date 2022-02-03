@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "Delete Response";
+}
+@model ApplicationResponse
+
+<div class="page-header min-vh-80" style="background-image: url('https://source.unsplash.com/MAYsdoYpGuk') ">
+    <span class="mask bg-gradient-dark opacity-6"></span>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 mx-auto">
+                <div class="text-center">
+                    <h1 class="text-white">Confirm Deletion</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card card-body shadow-xl mx-3 mx-md-4 mt-n6">
+    <div class="container">
+        <div class="section text-center">
+            <h3 class="title">Are you sure you want to delete the record for @Model.Title, <em>@Model.Year</em>?</h3>
+            <form method="post" asp-controller="Home" asp-action="Delete">
+                <button type="submit" class="btn btn-danger">Delete Now</button>
+                <a asp-controller="Home" asp-action="MovieList" class="btn btn-primary">Cancel</a>
+
+                <input type="hidden" asp-for="ApplicationID"/>
+            </form>
+        </div>
+    </div>
+</div>
